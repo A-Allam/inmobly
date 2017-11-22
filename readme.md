@@ -4,8 +4,8 @@
 
 ## Getting Started
 
-- Clone this repo: `git clone git@github.com:A-Allam/inmobly.git emanate`
-- run `cd emanate` to navigate into the directory
+- Clone this repo: `git clone git@github.com:A-Allam/inmobly.git inmobly`
+- run `cd inmobly` to navigate into the directory
 - Run `npm install` to Install the project's node dependencies
 - Run `bower install` to Install bower components for the project
 
