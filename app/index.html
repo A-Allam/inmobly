@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inmobily task</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+    
+  </head>
+  <body ng-app="app" ngCloak>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <img src="images/logo.png" alt="inmobily-logo">
+          </a>
+        </div>
+        <div class="pull-left">
+          <h1 class="navbar__title">
+            Front-end developer challenge
+          </h1>
+        </div>
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container-fluid" ng-controller="VideosController as channel">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-7">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label>Channel link</label>
+                  <input type="text" class="form-control" ng-model="channel.channelLink" required>
+                </div>
+                <button type="submit" class="btn btn-success" ng-click="channel.GetID()">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <div class="col-md-5">
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search titles and description"  ng-model="query" required>
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="panel panel-default videos-container">
+                <div class="panel-heading">
+                  Videos Items
+                </div>
+                <div class="panel-body">
+                  <table class="table table-bordered table-hover table-striped ">
+                    <thead>
+                      <tr>
+                        <th>Title</th>
+                        <th>Upload date</th>
+                        <th>Duration</th>
+                        <th>No. of views</th>
+                        <th>No. of Likes</th>
+                        <th class="videos-container__description">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="video in channel.list  | filter:query" ng-click="channel.setUrl($index)" ng-class="{'selected': $index == channel.selectedVideoIndex}">
+
+                        <td>{{ video.snippet.title }}</td>
+                        <td>{{ video.snippet.publishedAt | date:'yyyy-MM-dd' }}</td>
+                        <td>{{ video.contentDetails.duration | date:'hh:mm'}}</td>
+                        <td>{{ video.statistics.viewCount }}</td>
+                        <td>{{ video.statistics.likeCount }}</td>
+                        <td>{{ video.snippet.description }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="panel-footer">
+                  <div class="clearfix">
+                    <form class="form-inline pull-left">
+                      <label for="">page 1 show </label>
+                      <select class="form-control">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                      </select>
+                    </form>
+                    <nav aria-label="Page navigation" class="pull-right">
+                      <ul class="pagination">
+                        <li>
+                          <a href="#" aria-label="Previous">
+                            <span aria-hidden="true" class="glyphicon glyphicon-chevron-left">
+                            </span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true" class="glyphicon glyphicon-chevron-right">
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Videos Details
+            </div>
+            <div class="panel-body">
+              <iframe width="100%" height="200" src="{{channel.videoID}}" frameborder="0" allowfullscreen></iframe>
+              <form action="">
+                <div class="form-group">
+                  <label>Medium Quality thubmnial</label>
+                  <input type="text" class="form-control" ng-model="channel.selectedVideo.snippet.thumbnails.medium.url">
+                </div>
+                <div class="pull-right">
+                  <button class="btn btn-success">
+                    Copy
+                  </button>
+                  <button class="btn btn-success" ng-click="channel.downloadImage(channel.selectedVideo.snippet.thumbnails.medium.url)">
+                    Download
+                  </button>
+                </div>
+
+                <div class="form-group">
+                  <label>High Quality thubmnial</label>
+                  <input type="text" class="form-control" ng-model="channel.selectedVideo.snippet.thumbnails.high.url">
+                </div>
+                <div class="pull-right">
+                  <button class="btn btn-success">
+                    Copy
+                  </button>
+                  <button class="btn btn-success" ng-click="channel.downloadImage(channel.selectedVideo.snippet.thumbnails.medium.url)">
+                    Download
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/moment/moment.js"></script>
+    <script src="/bower_components/angular-download/angular-download.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/app.module.js"></script>
+    <script src="scripts/app.config.js"></script>
+    <script src="scripts/getVideos.service.js"></script>
+    <script src="scripts/VideosController.controlelr.js"></script>
+    <script src="scripts/videoStatistics.service.js"></script>
+    <script src="scripts/GetChannelID.service.js"></script>
+
+    <!-- endbuild -->
+  </body>
+</html>

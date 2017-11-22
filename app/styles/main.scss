@@ -1,0 +1,71 @@
+$icon-font-path: '../fonts/';
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+
+body{
+  background-color: #0D2C2B;
+  color: #fff;
+}
+
+.navbar{
+  background-color: #174847;
+  border: none;
+  border-radius: 0;
+
+
+  &__title{
+    font-size: 20px;
+  }
+}
+
+.btn-success{
+  background-color:#01B181;
+}
+
+.navbar-brand img{
+  width: 100px;
+}
+
+.panel-default > .panel-heading{
+  background-color:#174747;
+  border-color:#3D6E6C;
+  color: #fff;
+}
+
+.panel-body, .tbody, .panel-footer, .form-control, .pagination > li > a, .pagination > li > span{
+  background-color:#174747;
+  border-color:#3D6E6C;
+  color: #fff;
+}
+
+.selected{
+  background-color:#01B181 !important;
+}
+
+.panel-default, thead, .table-bordered{
+  border-color:#3D6E6C;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd){
+  background-color:#113939;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > tfoot > tr > td{
+  border:1px solid #3D6E6C;
+}
+
+.table-hover > tbody > tr:hover{
+  background-color:#01B181;
+  cursor: pointer;
+}
+
+.videos-container{
+  margin-top: 20px;
+
+  &__description{
+    width: 35%;
+  }
+}
+
