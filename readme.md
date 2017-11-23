@@ -10,7 +10,7 @@
 - Run `bower install` to Install bower components for the project
 
 
-## run the app
+## Running the app
 
 - Installing gulp globally `npm install --global gulp-cli`.
 - Run `gulp serve` to preview and watch for changes.
