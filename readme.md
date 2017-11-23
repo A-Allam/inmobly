@@ -1,5 +1,5 @@
 # inmobly Front-end task
-> This is a node project.  On the master branch is the "final" version of our app.
+> This is a node project.  On the master branch is the "final" version of the app.
 
 
 ## Getting Started
@@ -10,7 +10,7 @@
 - Run `bower install` to Install bower components for the project
 
 
-## Getting Started
+## run the app
 
 - Installing gulp globally `npm install --global gulp-cli`.
 - Run `gulp serve` to preview and watch for changes.
